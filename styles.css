@@ -1,0 +1,162 @@
+.course-content ul.collapsibletopics {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.course-content ul.collapsibletopics li. section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.course-content ul.collapsibletopics li.section .content {
+    padding: .5rem 0;
+    margin: 0;
+}
+
+.course-content ul.collapsibletopics li.section .sectionname {
+    color: #1177d1;
+}
+
+.course-content ul.collapsibletopics li.section .right {
+    padding: 0 6px;
+}
+
+/* Styling depending on edit mode*/
+body.editing .course-content ul.collapsibletopics li.section .left.side {
+    margin-top: .825rem;
+}
+
+body.editing .course-content ul.collapsibletopics li.section .left.side.legacy {
+    margin-top: 1.875rem;
+}
+
+body:not(.editing) .course-content ul.collapsibletopics li.section .left.side {
+    display: none;
+}
+
+.course-content .collapsible-actions {
+    padding-right: 6px;
+}
+
+.course-content .collapsible-actions a {
+    padding-left: 20px;
+}
+
+.course-content .collapsible-actions a.expandall {
+    background: url([[pix:moodle|t/collapsed]]) 2px center no-repeat;
+}
+
+.course-content .collapsible-actions a.collapseall {
+    background: url([[pix:moodle|t/expanded]]) 2px center no-repeat;
+}
+
+.course-content .collapsible-actions {
+    margin-top: 1rem;
+}
+
+body.editing .course-content ul.collapsibletopics li.section .left .icon.spacer {
+    width: 0;
+}
+
+/* Section toggle */
+.course-content ul.collapsibletopics a.sectiontoggle {
+    margin: 1px 3px 3px;
+    padding: 2px 18px 2px 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+body.editing .course-content ul.collapsibletopics a.sectiontoggle {
+    float: left;
+}
+
+.course-content ul.collapsibletopics a.sectiontoggle:hover {
+    text-decoration: none;
+}
+
+body.editing .course-content ul.collapsibletopics .sectiontoggle.legacy {
+    margin-top: 1.25rem;
+}
+
+.course-content ul.collapsibletopics a.sectiontoggle[aria-expanded="true"] {
+    background-image: url([[pix:moodle|t/expanded]]);
+    background-position: left 55%;
+    padding-left: 1rem;
+}
+
+.course-content ul.collapsibletopics a.sectiontoggle[aria-expanded="false"] {
+    background-image: url([[pix:moodle|t/collapsed]]);
+    background-position: left 50%;
+    padding-left: 1rem;
+}
+
+body.editing .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded="true"] {
+    background-position: left 30%;
+    padding-right: 1rem;
+    padding-left:0;
+}
+
+body.editing .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded="false"] {
+    background-position: left 25%;
+    padding-right: 1rem;
+    padding-left: 0;
+}
+
+.course-content ul.collapsibletopics a.sectiontoggle.legacy span.sectionname {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.course-content ul.collapsibletopics a.sectiontoggle .sectionname:hover {
+    text-decoration: underline;
+}
+
+/* Section content */
+.course-content ul.collapsibletopics .content .summarytext {
+    margin: .125rem 1.625rem;
+}
+
+body.editing ul.collapsibletopics .content .summarytext {
+    margin-left: 3.5rem;
+    margin-right: 3.5rem;
+}
+
+.course-content ul.collapsibletopics .content .section-summary-activities .activity-count {
+    font-size: .8203125rem;
+    margin: 3px;
+    white-space: nowrap;
+    display: inline-block;
+    color: #868e96;
+}
+
+.course-content ul.collapsibletopics #section-0 .section-summary-activities {
+    display:none;
+}
+
+.course-content ul.collapsibletopics .sectiontoggle ~ .section-summary-activities {
+    display: none;
+}
+
+.course-content ul.collapsibletopics .sectiontoggle.collapsed ~ .section-summary-activities {
+    display: block;
+}
+
+.course-content ul.collapsibletopics .collapsing {
+    -webkit-transition: none;
+    transition: none;
+}
+
+.course-content ul.collapsibletopics div.section_availability {
+    margin-left: 1.5rem;
+}
+
+.course-content ul.collapsibletopics li.section ul.section {
+    padding-left: .375rem;
+}
+
+body.editing .course-content ul.collapsibletopics li.section ul.section {
+    padding-left: .125rem;
+}
