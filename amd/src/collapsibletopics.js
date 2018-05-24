@@ -37,6 +37,8 @@ define(['jquery', 'core/log'], function($, log) {
                         section = '#collapse-' + parseInt(section);
                         $(section).collapse('show');
                     }
+                    var currentcontent = $('.section.current a.sectiontoggle').attr('href');
+                    $(currentcontent).collapse('show');
                 }, 50);
 
                 // Handle toggle all sections.
