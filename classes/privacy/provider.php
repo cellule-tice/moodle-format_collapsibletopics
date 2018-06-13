@@ -18,25 +18,66 @@
  * Cloned from format_topics, only namespace changed.
  *
  * @package    format_collapsibletopics
- * @copyright  2018 Carlos Escobedo <carlos@moodle.com>
+ * @copyright 2018 - Cellule TICE - Unversite de Namur
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 namespace format_collapsibletopics\privacy;
+
+use \core_privacy\local\request\writer;
+use \core_privacy\local\metadata\collection;
+use \core_privacy\local\request\transform;
+
 defined('MOODLE_INTERNAL') || die();
+
 /**
- * Privacy Subsystem for format_collapsibletopics implementing null_provider.
- *
- * @copyright  2018 Carlos Escobedo <carlos@moodle.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * Implementation of the privacy subsystem plugin provider for the user tours feature.
  */
-class provider implements \core_privacy\local\metadata\null_provider {
+class provider implements
+    // This plugin has data.
+    \core_privacy\local\metadata\provider,
+
+    // This plugin has some sitewide user preferences to export.
+    \core_privacy\local\request\user_preference_provider {
+
     /**
-     * Get the language string identifier with the component's language
-     * file to explain why this plugin stores no data.
+     * Returns meta data about this system.
      *
-     * @return  string
+     * @param collection $itemcollection The initialised item collection to add items to.
+     * @return collection A listing of user data stored through this system.
      */
-    public static function get_reason() : string {
-        return 'privacy:metadata';
+    public static function get_metadata(collection $items) : collection {
+        // There are several user preferences.
+        $items->add_user_preference('sections-toggle', 'privacy:metadata:preference:sectionstoggle');
+
+        return $items;
+    }
+
+    /**
+     * Store all user preferences for the plugin.
+     *
+     * @param int $userid The userid of the user whose data is to be exported.
+     */
+    public static function export_user_preferences(int $userid) {
+
+        $preferences = get_user_preferences();
+        foreach ($preferences as $prefname => $prefvalue) {
+            $courseid = null;
+            if (strpos($prefname, 'sections-toggle-') === 0) {
+                $courseid = substr($prefname, 16);
+                $decodedprefvalue = (array)json_decode($prefvalue);
+                $sectionsarray = array_keys($decodedprefvalue);
+                $sections = implode(', ', $sectionsarray);
+                writer::export_user_preference(
+                    'format_collapsibletopics',
+                    $prefname,
+                    $sections,
+                    get_string('privacy:request:preference:sectionstoggle', 'format_collapsibletopics', (object) [
+                        'name' => $courseid,
+                        'value' => $sections
+                    ])
+                );
+            }
+        }
+
     }
 }

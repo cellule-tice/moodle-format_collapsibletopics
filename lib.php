@@ -138,7 +138,7 @@ class format_collapsibletopics extends format_base {
      * Loads all of the course sections into the navigation
      *
      * @param global_navigation $navigation
-     * @param navigation_node $node The course node within the navigation
+     * @param navigation_node $node the course node within the navigation
      */
     public function extend_course_navigation($navigation, navigation_node $node) {
         global $PAGE;
