@@ -330,8 +330,8 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
      * @return string HTML to output.
      */
     protected function section_footer() {
-        $o = html_writer::end_tag('div'); // Jrm end div surrounding content to allow section collapsing.
-        $o .= html_writer::end_tag('li');
+        $o = html_writer::end_tag('div'); // Collapsing format needs has an extra div surrounding content to allow section collapsing.
+        $o .= parent::section_footer();
 
         return $o;
     }
@@ -373,48 +373,6 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
         $o .= html_writer::end_tag('div');
         $o .= $this->section_activity_summary($section, $course, null);
 
-        return $o;
-    }
-
-    /**
-     * If section is not visible, display the message about that ('Not available
-     * until...', that sort of thing). Otherwise, returns blank.
-     *
-     * For users with the ability to view hidden sections, it shows the
-     * information even though you can view the section and also may include
-     * slightly fuller information (so that teachers can tell when sections
-     * are going to be unavailable etc). This logic is the same as for
-     * activities.
-     *
-     * @param section_info $section The course_section entry from DB
-     * @param bool $canviewhidden True if user can view hidden sections
-     * @return string HTML to output
-     */
-    protected function section_availability_message($section, $canviewhidden) {
-        global $CFG;
-        $o = '';
-        if (!$section->visible) {
-            if ($canviewhidden) {
-                $o .= $this->courserenderer->availability_info(get_string('hiddenfromstudents'), 'ishidden');
-            }
-        } else if (!$section->uservisible) {
-            if ($section->availableinfo) {
-                // Note: We only get to this function if availableinfo is non-empty,
-                // so there is definitely something to print.
-                $formattedinfo = \core_availability\info::format_info(
-                    $section->availableinfo, $section->course);
-                $o .= $this->courserenderer->availability_info($formattedinfo);
-            }
-        } else if ($canviewhidden && !empty($CFG->enableavailability)) {
-            // Check if there is an availability restriction.
-            $ci = new \core_availability\info_section($section);
-            $fullinfo = $ci->get_full_information();
-            if ($fullinfo) {
-                $formattedinfo = \core_availability\info::format_info(
-                    $fullinfo, $section->course);
-                $o .= $this->courserenderer->availability_info($formattedinfo);
-            }
-        }
         return $o;
     }
 
