@@ -26,7 +26,7 @@ require_once($CFG->dirroot. '/course/format/singleactivity/settingslib.php');
 
 if ($ADMIN->fulltree) {
     $name = 'format_collapsibletopics/keepstateoversession';
-    $title = get_string('keepstateoversession', 'format_collapsibletopics');'Garder l\'état des sections après déconnexion';
+    $title = get_string('keepstateoversession', 'format_collapsibletopics');
     $description = get_string('keepstateoversession_desc', 'format_collapsibletopics');
     $default = false;
     $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
