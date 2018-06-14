@@ -33,6 +33,7 @@ $string['keepstateoversession_desc'] = 'If checked collapse state will be kept w
 $string['newsectionname'] = 'New name for topic {$a}';
 $string['pluginname'] = 'Collapsible Topics format';
 $string['privacy:metadata'] = 'The Collapsible topics format plugin does not store any personal data.';
+$string['privacy:metadata:preference:toggle'] = 'Toggle state for sections of a course.';
 $string['privacy:request:preference:sectionstoggle'] = 'You kept sections {$a->value}" opened in course {$a->name}';
 $string['sectionname'] = 'Topic';
 $string['section0name'] = 'General';
