@@ -15,7 +15,6 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * This file contains main class for the course format Collapsibletopics
  * Adaptation of core topics format to add collapsing behaviour to topics.
  *
  * @package   format_collapsibletopics

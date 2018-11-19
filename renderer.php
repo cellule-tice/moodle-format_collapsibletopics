@@ -16,7 +16,6 @@
 
 /**
  * Renderer for outputting the collapisbletopics course format.
- * Adapation of core topics format renderer to add collapsing behaviour to sections.
  *
  * @package format_collapsibletopics
  * @copyright 2018 - Cellule TICE - Unversite de Namur
@@ -31,7 +30,7 @@ require_once($CFG->dirroot.'/course/format/renderer.php');
 
 /**
  * Basic renderer for collapsingtopics format.
- * Adapation of core topics format renderer to add collapsing behaviour to sections.
+ *
  * @package    format_collapsibletopics
  * @copyright  2018 - Cellule TICE - Unversite de Namur
  * @copyright  2012 Dan Poltawski
@@ -217,7 +216,6 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
         global $PAGE;
 
         $o = '';
-        $currenttext = '';
         $sectionstyle = '';
 
         if ($section->section != 0) {
@@ -330,7 +328,8 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
      * @return string HTML to output.
      */
     protected function section_footer() {
-        $o = html_writer::end_tag('div'); // Collapsing format needs has an extra div surrounding content to allow section collapsing.
+        // Collapsing format needs has an extra div surrounding content to allow section collapsing.
+        $o = html_writer::end_tag('div');
         $o .= parent::section_footer();
 
         return $o;

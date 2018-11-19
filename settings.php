@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Format collapsibletopics settings file.
+ *
  * @package    format_collapsibletopics
  * @author     Jean-Roch Meurisse
  * @copyright  2018 - Cellule TICE - Unversite de Namur

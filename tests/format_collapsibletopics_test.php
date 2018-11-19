@@ -15,7 +15,6 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * format_collapsibletopics related unit tests
  * Cloned from format_topics, only class name and reference to topics format changed.
  *
  * @package    format_collapsibletopics
@@ -30,7 +29,6 @@ global $CFG;
 require_once($CFG->dirroot . '/course/lib.php');
 
 /**
- * format_collapsibletopics related unit tests
  * Cloned from format_topics, only class name and reference to topics format changed.
  *
  * @package    format_collapsibletopics
@@ -129,7 +127,7 @@ class format_collapsibletopics_testcase extends advanced_testcase {
      * Test web service updating section name
      */
     public function test_update_inplace_editable() {
-        global $CFG, $DB, $PAGE;
+        global $CFG, $DB;
         require_once($CFG->dirroot . '/lib/external/externallib.php');
 
         $this->resetAfterTest();
@@ -240,8 +238,6 @@ class format_collapsibletopics_testcase extends advanced_testcase {
     public function test_get_view_url() {
         global $CFG;
         $this->resetAfterTest();
-
-        $linkcoursesections = $CFG->linkcoursesections;
 
         // Generate a course with two sections (0 and 1) and two modules.
         $generator = $this->getDataGenerator();

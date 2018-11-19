@@ -27,12 +27,12 @@ define(['jquery', 'core/log'], function($, log) {
     "use strict";
 
     return {
-        init: function ($args) {
+        init: function($args) {
             log.debug('Format collapsibletopics AMD module initialized');
             $(document).ready(function($) {
                 var sectiontoggles = JSON.parse($args.sectionstoggle);
 
-                setTimeout(function () {
+                setTimeout(function() {
                     for (var section in sectiontoggles) {
                         section = '#collapse-' + parseInt(section);
                         $(section).collapse('show');
@@ -50,7 +50,7 @@ define(['jquery', 'core/log'], function($, log) {
                     $('.sectiontoggle').each(function(index, element) {
                         var section = '#collapse-' + (index + 1);
                         $(section).collapse('show');
-                        if($(element).hasClass('legacy')) {
+                        if ($(element).hasClass('legacy')) {
                             $(element).attr('aria-expanded', 'true');
                         }
                         if (!sectiontoggles.hasOwnProperty(index + 1)) {
@@ -67,7 +67,7 @@ define(['jquery', 'core/log'], function($, log) {
                     $('.sectiontoggle').each(function(index, element) {
                         var section = '#collapse-' + (index + 1);
                         $(section).collapse('hide');
-                        if($(element).hasClass('legacy')) {
+                        if ($(element).hasClass('legacy')) {
                             $(element).attr('aria-expanded', 'false');
                         }
                         if (sectiontoggles.hasOwnProperty(index + 1)) {
@@ -80,7 +80,7 @@ define(['jquery', 'core/log'], function($, log) {
 
                     var href = $(event.target).parent().parent().parent().attr('href');
 
-                    if( href.lastIndexOf('#section-') != -1) {
+                    if (href.lastIndexOf('#section-') != -1) {
                         var index = href.substring(href.lastIndexOf('-') + 1);
                         var attr = '#collapse-' + index;
                         $(attr).collapse('show');

@@ -15,7 +15,6 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Specialised restore for format_collapsibletopics
  * Cloned from format_topics, only class name and reference to topics format changed.
  *
  * @package   format_collapsibletopics

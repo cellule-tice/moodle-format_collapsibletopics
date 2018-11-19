@@ -15,7 +15,6 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
  * Privacy Subsystem implementation for format_collapsibletopics.
- * Cloned from format_topics, only namespace changed.
  *
  * @package    format_collapsibletopics
  * @copyright 2018 - Cellule TICE - Unversite de Namur
@@ -30,19 +29,19 @@ use \core_privacy\local\request\transform;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Implementation of the privacy subsystem plugin provider for the user tours feature.
+ * Implementation of the privacy subsystem plugin provider for the collapsible topics course format.
  */
 class provider implements
     // This plugin has data.
     \core_privacy\local\metadata\provider,
 
-    // This plugin has some sitewide user preferences to export.
+    // This plugin stores user data.
     \core_privacy\local\request\user_preference_provider {
 
     /**
      * Returns meta data about this system.
      *
-     * @param collection $itemcollection The initialised item collection to add items to.
+     * @param collection $items The initialised item collection to add items to.
      * @return collection A listing of user data stored through this system.
      */
     public static function get_metadata(collection $items) : collection {
@@ -59,7 +58,7 @@ class provider implements
      */
     public static function export_user_preferences(int $userid) {
 
-        $preferences = get_user_preferences();
+        $preferences = get_user_preferences(null, null, $userid);
         foreach ($preferences as $prefname => $prefvalue) {
             $courseid = null;
             if (strpos($prefname, 'sections-toggle-') === 0) {

@@ -96,7 +96,7 @@ body.editing .course-content ul.collapsibletopics .sectiontoggle.legacy {
 body.editing .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded="true"] {
     background-position: left 30%;
     padding-right: 1rem;
-    padding-left:0;
+    padding-left: 0;
 }
 
 body.editing .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded="false"] {
@@ -116,7 +116,7 @@ body.editing .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded=
 
 /* Section content */
 .course-content ul.collapsibletopics .content .summarytext {
-    margin: .125rem 1.625rem;
+    margin: .125rem 1.625rem 0 .125rem;
 }
 
 body.editing ul.collapsibletopics .content .summarytext {
@@ -133,7 +133,7 @@ body.editing ul.collapsibletopics .content .summarytext {
 }
 
 .course-content ul.collapsibletopics #section-0 .section-summary-activities {
-    display:none;
+    display: none;
 }
 
 .course-content ul.collapsibletopics .sectiontoggle ~ .section-summary-activities {

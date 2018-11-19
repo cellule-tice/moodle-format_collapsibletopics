@@ -27,7 +27,9 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot.'/course/format/lib.php');
 
-
+/**
+ * Event observed by collapsibletopics format.
+ */
 class format_collapsibletopics_observer {
     /**
      * Observe user_loggedout event in order to delete topics collapse state for logging out user if necessary.
@@ -36,7 +38,7 @@ class format_collapsibletopics_observer {
      * @throws coding_exception
      */
     public static function user_loggedout(core\event\base $event) {
-        global $DB, $USER;
+        global $DB;
         if (!get_config('format_collapsibletopics', 'keepstateoversession')) {
             $eventdata = $event->get_data();
             $courses = enrol_get_all_users_courses($eventdata['userid']);
