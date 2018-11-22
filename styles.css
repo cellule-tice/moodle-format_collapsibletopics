@@ -116,7 +116,7 @@ body.editing .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded=
 
 /* Section content */
 .course-content ul.collapsibletopics .content .summarytext {
-    margin: .125rem 1.625rem 0 .125rem;
+    margin: 0 1.625rem 0 .125rem;
 }
 
 body.editing ul.collapsibletopics .content .summarytext {
