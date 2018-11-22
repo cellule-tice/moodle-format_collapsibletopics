@@ -222,7 +222,7 @@ class format_collapsibletopics extends format_base {
                 ),
             );
         }
-        if ($foreditform && !isset($courseformatoptions['coursedisplay']['label'])) {
+        if ($foreditform && !isset($courseformatoptions['hiddensections']['label'])) {
             $courseformatoptionsedit = array(
                 'hiddensections' => array(
                     'label' => new lang_string('hiddensections'),
