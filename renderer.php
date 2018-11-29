@@ -71,6 +71,10 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
     public function print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused) {
         global $PAGE;
 
+        if (!isset($course->coursedisplay)) {
+            $course->coursedisplay = COURSE_DISPLAY_SINGLEPAGE;
+        }
+
         $modinfo = get_fast_modinfo($course);
         $course = course_get_format($course)->get_course();
 
@@ -112,27 +116,22 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
             // but there is some available info text which explains the reason & should display.
             $showsection = $thissection->uservisible ||
                 ($thissection->visible && !$thissection->available &&
-                    !empty($thissection->availableinfo));
+                    !empty($thissection->availableinfo))
+                || (!$thissection->visible && !$course->hiddensections);
             if (!$showsection) {
-                // If the hiddensections option is set to 'show hidden sections in collapsed
-                // form', then display the hidden section message - UNLESS the section is
-                // hidden by the availability system, which is set to hide the reason.
-                if (!$course->hiddensections && $thissection->available) {
-                    echo $this->section_hidden($section, $course->id);
-                }
-
                 continue;
             }
 
+            $modules = $this->courserenderer->course_section_cm_list($course, $thissection, 0);
+            $control = $this->courserenderer->course_section_add_cm_control($course, $section, 0);
+            echo $this->section_header($thissection, $course, false, 0);
+
             if ($thissection->uservisible) {
-                $modules = $this->courserenderer->course_section_cm_list($course, $thissection, 0);
-                $control = $this->courserenderer->course_section_add_cm_control($course, $section, 0);
-                echo $this->section_header($thissection, $course, false, 0);
                 echo $modules;
                 echo $control;
-                echo $this->section_footer();
             }
 
+            echo $this->section_footer();
         }
 
         if ($PAGE->user_is_editing() and has_capability('moodle/course:update', $context)) {
@@ -276,7 +275,12 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
 
             $o .= '<div class="clearfix">';
             $o .= $this->section_availability($section) . '</div>';
-            $o .= $this->section_summary($section, $course, null);
+            if ($section->uservisible || $section->visible) {
+                // Show summary if section is available or has availability restriction information.
+                // Do not show summary if section is hidden but we still display it because of course setting
+                // "Hidden sections are shown in collapsed form".
+                $o .= $this->section_summary($section, $course, null);
+            }
 
         } else {
             $sectionname = html_writer::tag('span', $this->section_title_without_link($section, $course));
@@ -302,7 +306,12 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
 
             $o .= '<div class="clearfix">' . $this->output->heading($sectionname, 3, 'sectionname' . $classes);
             $o .= $this->section_availability($section) . '</div>';
-            $o .= $this->section_summary($section, $course, null);
+            if ($section->uservisible || $section->visible) {
+                // Show summary if section is available or has availability restriction information.
+                // Do not show summary if section is hidden but we still display it because of course setting
+                // "Hidden sections are shown in collapsed form".
+                $o .= $this->section_summary($section, $course, null);
+            }
         }
         if (course_get_format($course)->is_section_current($section)) {
             $classes = 'collapse show';
