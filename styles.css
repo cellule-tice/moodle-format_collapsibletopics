@@ -144,11 +144,6 @@ body.editing ul.collapsibletopics .content .summarytext {
     display: block;
 }
 
-.course-content ul.collapsibletopics .collapsing {
-    -webkit-transition: none;
-    transition: none;
-}
-
 .course-content ul.collapsibletopics div.section_availability {
     margin-left: 1.5rem;
 }
