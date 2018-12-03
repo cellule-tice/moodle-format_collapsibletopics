@@ -29,6 +29,11 @@ require_once($CFG->dirroot.'/course/format/lib.php');
 
 /**
  * Event observed by collapsibletopics format.
+ *
+ * @package    format_collapsibletopics
+ * @author     Jean-Roch Meurisse
+ * @copyright  2018 - Cellule TICE - Unversite de Namur
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class format_collapsibletopics_observer {
     /**

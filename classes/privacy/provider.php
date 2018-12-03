@@ -30,6 +30,11 @@ defined('MOODLE_INTERNAL') || die();
 
 /**
  * Implementation of the privacy subsystem plugin provider for the collapsible topics course format.
+ *
+ * @package    format_collapsibletopics
+ * @author     Jean-Roch Meurisse
+ * @copyright  2018 - Cellule TICE - Unversite de Namur
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements
     // This plugin has data.
