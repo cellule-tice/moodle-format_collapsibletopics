@@ -185,11 +185,11 @@ class format_collapsibletopics_testcase extends advanced_testcase {
 
         // Try updating using callback from mismatching course format.
         try {
-            $tmpl = component_callback('format_weeks', 'inplace_editable',
+            $tmpl = component_callback('format_topics', 'inplace_editable',
                     array('sectionname', $section->id, 'New name'));
             $this->fail('Exception expected');
         } catch (moodle_exception $e) {
-            $this->assertEquals(1, preg_match('/^Can not find data record in database/', $e->getMessage()));
+            $this->assertEquals(1, preg_match('/^Can\'t find data record in database/', $e->getMessage()));
         }
     }
 
