@@ -27,10 +27,6 @@ body.editing .course-content ul.collapsibletopics li.section .left.side {
     margin-top: .825rem;
 }
 
-body.editing .course-content ul.collapsibletopics li.section .left.side.legacy {
-    margin-top: 1.875rem;
-}
-
 body:not(.editing) .course-content ul.collapsibletopics li.section .left.side {
     display: none;
 }
@@ -77,10 +73,6 @@ body.editing .course-content ul.collapsibletopics a.sectiontoggle {
     text-decoration: none;
 }
 
-body.editing .course-content ul.collapsibletopics .sectiontoggle.legacy {
-    margin-top: 1.25rem;
-}
-
 .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded="true"] {
     background-image: url([[pix:moodle|t/expanded]]);
     background-position: left 55%;
@@ -103,11 +95,6 @@ body.editing .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded=
     background-position: left 25%;
     padding-right: 1rem;
     padding-left: 0;
-}
-
-.course-content ul.collapsibletopics a.sectiontoggle.legacy span.sectionname {
-    font-size: 24px;
-    font-weight: 700;
 }
 
 .course-content ul.collapsibletopics a.sectiontoggle .sectionname:hover {

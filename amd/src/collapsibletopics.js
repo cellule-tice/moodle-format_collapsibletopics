@@ -47,12 +47,9 @@ define(['jquery', 'core/log'], function($, log) {
                     var target = event.target;
                     $(target).removeClass('expandall').addClass('collapseall').html(M.util.get_string('collapseall', 'moodle'));
 
-                    $('.sectiontoggle').each(function(index, element) {
+                    $('.sectiontoggle').each(function(index) {
                         var section = '#collapse-' + (index + 1);
                         $(section).collapse('show');
-                        if ($(element).hasClass('legacy')) {
-                            $(element).attr('aria-expanded', 'true');
-                        }
                         if (!sectiontoggles.hasOwnProperty(index + 1)) {
                             sectiontoggles[index + 1] = "true";
                             M.util.set_user_preference('sections-toggle-' + $args.course, JSON.stringify(sectiontoggles));
@@ -64,12 +61,9 @@ define(['jquery', 'core/log'], function($, log) {
                     event.preventDefault();
                     var target = event.target;
                     $(target).removeClass('collapseall').addClass('expandall').html(M.util.get_string('expandall', 'moodle'));
-                    $('.sectiontoggle').each(function(index, element) {
+                    $('.sectiontoggle').each(function(index) {
                         var section = '#collapse-' + (index + 1);
                         $(section).collapse('hide');
-                        if ($(element).hasClass('legacy')) {
-                            $(element).attr('aria-expanded', 'false');
-                        }
                         if (sectiontoggles.hasOwnProperty(index + 1)) {
                             delete sectiontoggles[index + 1];
                             M.util.set_user_preference('sections-toggle-' + $args.course, JSON.stringify(sectiontoggles));
@@ -90,10 +84,7 @@ define(['jquery', 'core/log'], function($, log) {
                 $('.collapse').on('show.bs.collapse', function(event) {
                     var sectionstringid = $(event.target).attr('id');
                     var sectionid = sectionstringid.substring(sectionstringid.lastIndexOf('-') + 1);
-                    var toggle = $('.sectiontoggle.legacy[href="#collapse-' + sectionid + '"]');
-                    if (toggle) {
-                        toggle.attr('aria-expanded', 'true');
-                    }
+
                     if (!sectiontoggles.hasOwnProperty(sectionid)) {
                         sectiontoggles[sectionid] = "true";
                         M.util.set_user_preference('sections-toggle-' + $args.course, JSON.stringify(sectiontoggles));
@@ -103,10 +94,7 @@ define(['jquery', 'core/log'], function($, log) {
                 $('.collapse').on('hide.bs.collapse', function(event) {
                     var sectionstringid = $(event.target).attr('id');
                     var sectionid = sectionstringid.substring(sectionstringid.lastIndexOf('-') + 1);
-                    var toggle = $('.sectiontoggle.legacy[href="#collapse-' + sectionid + '"]');
-                    if (toggle) {
-                        toggle.attr('aria-expanded', 'false');
-                    }
+
                     if (sectiontoggles.hasOwnProperty(sectionid)) {
                         delete sectiontoggles[sectionid];
                         M.util.set_user_preference('sections-toggle-' + $args.course, JSON.stringify(sectiontoggles));

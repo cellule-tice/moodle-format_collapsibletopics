@@ -39,27 +39,6 @@ require_once($CFG->dirroot.'/course/format/renderer.php');
 class format_collapsibletopics_renderer extends format_section_renderer_base {
 
     /**
-     * @var bool flag allowing to adapt display for legacy themes (based on bootstrapbase)
-     */
-    protected $legacytheme;
-
-    /**
-     * Constructor method, calls the parent constructor
-     *
-     * @param moodle_page $page
-     * @param string $target one of rendering target constants
-     */
-    public function __construct(moodle_page $page, $target) {
-        parent::__construct($page, $target);
-
-        if (in_array('bootstrapbase', $page->theme->parents)) {
-            $this->legacytheme = true;
-        } else {
-            $this->legacytheme = false;
-        }
-    }
-
-    /**
      * Overrides format_section_renderer_base implementation.
      *
      * @param stdClass $course The course entry from DB
@@ -232,9 +211,8 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
 
         // Create a span that contains the section title to be used to create the keyboard section move menu.
         $o .= html_writer::tag('span', get_section_name($course, $section), array('class' => 'hidden sectionname'));
-        $extraclass = $this->legacytheme ? ' legacy' : '';
         $leftcontent = $this->section_left_content($section, $course, $onsectionpage);
-        $o .= html_writer::tag('div', $leftcontent, array('class' => 'left side' . $extraclass));
+        $o .= html_writer::tag('div', $leftcontent, array('class' => 'left side'));
 
         $rightcontent = $this->section_right_content($section, $course, $onsectionpage);
         $o .= html_writer::tag('div', $rightcontent, array('class' => 'right side'));
@@ -254,16 +232,15 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
             $sectionname = html_writer::tag('span', $this->section_title_without_link($section, $course),
                 array('class' => 'sectionname'));
             // Add collapse toggle.
-            $extraclass = $this->legacytheme ? ' legacy' : '';
             if (course_get_format($course)->is_section_current($section)) {
-                $o .= '<a class="sectiontoggle' . $extraclass .
+                $o .= '<a class="sectiontoggle' .
                     '" data-toggle="collapse" data-parent="accordion" href="#collapse-' .
                     $section->section .
                     '" aria-expanded="true" aria-controls="collapse-' .
                     $section->section .
                     '">&nbsp;' . $sectionname . '</a> ';
             } else if ($section->section != 0) {
-                $o .= '<a class="sectiontoggle collapsed' . $extraclass .
+                $o .= '<a class="sectiontoggle collapsed' .
                     '" data-toggle="collapse" data-parent="accordion" href="#collapse-' .
                     $section->section .
                     '" aria-expanded="false" aria-controls="collapse-' .
@@ -286,16 +263,15 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
             $sectionname = html_writer::tag('span', $this->section_title_without_link($section, $course));
 
             // Add collapse toggle.
-            $extraclass = $this->legacytheme ? ' legacy' : '';
             if (course_get_format($course)->is_section_current($section)) {
-                $o .= '<a class="sectiontoggle' . $extraclass .
+                $o .= '<a class="sectiontoggle' .
                     '" data-toggle="collapse" data-parent="accordion" href="#collapse-' .
                     $section->section .
                     '" aria-expanded="true" aria-controls="collapse-' .
                     $section->section .
                     '">&nbsp;</a> ';
             } else if ($section->section != 0) {
-                $o .= '<a class="sectiontoggle collapsed' . $extraclass .
+                $o .= '<a class="sectiontoggle collapsed' .
                     '" data-toggle="collapse" data-parent="accordion" href="#collapse-' .
                     $section->section .
                     '" aria-expanded="false" aria-controls="collapse-' .
