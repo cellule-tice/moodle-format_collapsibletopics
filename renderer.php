@@ -270,9 +270,10 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
                     $section->section .
                     '">&nbsp;' . $sectionname .
                     '</a> ';
+            } else if ($section->section == 0 && $course->showsection0title == True && !is_null($section->name)) {
+                $o .= $this->output->heading($sectionname, 3, 'sectionname' . $classes);
             }
             // End collapse toggle.
-
             $o .= '<div class="clearfix">';
             $o .= $this->section_availability($section) . '</div>';
             if ($section->uservisible || $section->visible) {

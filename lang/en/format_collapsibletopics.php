@@ -38,4 +38,6 @@ $string['privacy:request:preference:sectionstoggle'] = 'You kept sections {$a->v
 $string['sectionname'] = 'Topic';
 $string['section0name'] = 'General';
 $string['showfromothers'] = 'Show topic';
-
+$string['showsection0'] = 'Show section 0 section title';
+$string['section0titlehidden'] = 'Section 0 title is hidden';
+$string['section0titleshown'] = 'Section 0 title is shown';
