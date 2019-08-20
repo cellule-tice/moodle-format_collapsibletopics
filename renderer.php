@@ -302,7 +302,8 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
             $classes .
             '" role="tabpanel" aria-labelledby="heading' .
             $section->section .
-            '">';
+            '">' .
+            '<span class="hidden">' . $sectionname . '</span>';
 
         return $o;
     }
