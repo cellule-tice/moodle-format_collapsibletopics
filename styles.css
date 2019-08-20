@@ -85,6 +85,10 @@ body.editing .course-content ul.collapsibletopics a.sectiontoggle {
     padding-left: 1rem;
 }
 
+body.dir-rtl .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded="false"] {
+    background-image: url([[pix:moodle|t/collapsed_rtl]]);
+}
+
 body.editing .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded="true"] {
     background-position: left 30%;
     padding-right: 1rem;
