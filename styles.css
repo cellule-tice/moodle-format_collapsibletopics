@@ -65,10 +65,7 @@ body.editing .course-content ul.collapsibletopics li.section .left .icon.spacer 
     background-repeat: no-repeat;
     background-position: center center;
     cursor: pointer;
-font-size: 1.5rem;
-//display: block;
-    //font-weight: bold;
-    //background-color: #f2f2f2;
+    font-size: 1.5rem;
 }
 
 body.editing .course-content ul.collapsibletopics a.sectiontoggle {
@@ -130,7 +127,7 @@ body.editing ul.collapsibletopics .content .summarytext {
 }
 
 .course-content ul.collapsibletopics .sectiontoggle ~ .section-summary-activities,
-.course-content ul.collapsibletopics .sectiontoggle-bottom .section-summary-activities{
+.course-content ul.collapsibletopics .sectiontoggle-bottom .section-summary-activities {
     display: none;
 }
 

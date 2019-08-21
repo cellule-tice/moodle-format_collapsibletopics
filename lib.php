@@ -221,7 +221,7 @@ class format_collapsibletopics extends format_base {
                     'type' => PARAM_INT,
                 ),
                 'sectionprogress' => array(
-                    'default' => 0,//$courseconfig->sectionprogress,
+                    'default' => 0,
                     'type' => PARAM_INT,
                 )
             );
