@@ -220,6 +220,10 @@ class format_collapsibletopics extends format_base {
                     'default' => $courseconfig->hiddensections,
                     'type' => PARAM_INT,
                 ),
+                'sectionprogress' => array(
+                    'default' => 0,//$courseconfig->sectionprogress,
+                    'type' => PARAM_INT,
+                )
             );
         }
         if ($foreditform && !isset($courseformatoptions['hiddensections']['label'])) {
@@ -235,6 +239,18 @@ class format_collapsibletopics extends format_base {
                             1 => new lang_string('hiddensectionsinvisible')
                         )
                     ),
+                ),
+                'sectionprogress' => array(
+                    'label' => get_string('sectionprogress', 'format_collapsibletopics'),
+                    'help' => 'sectionprogress',
+                    'help_component' => 'format_collapsibletopics',
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            0 => get_string('sectionprogresshidden', 'format_collapsibletopics'),
+                            1 => get_string('sectionprogressshown', 'format_collapsibletopics'),
+                        )
+                    )
                 ),
             );
             $courseformatoptions = array_merge_recursive($courseformatoptions, $courseformatoptionsedit);
