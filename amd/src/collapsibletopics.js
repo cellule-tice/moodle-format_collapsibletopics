@@ -100,6 +100,29 @@ define(['jquery', 'core/log'], function($, log) {
                         M.util.set_user_preference('sections-toggle-' + $args.course, JSON.stringify(sectiontoggles));
                     }
                 });
+                $('body').on('click', '.togglecompletion button', function(event) {
+                    //event.preventDefault();
+                    var target = event.target;
+                    var state  = $(target).parent().parent().children('input[name="completionstate"]').val();
+                    var section = ($(target).closest('li.section'));
+                    var progressbar = $(section).find('.progress-bar');
+                    var oldvalue = parseInt($(progressbar).attr('aria-valuenow'));
+                    var newvalue = state == 1 ? oldvalue + 1 : oldvalue - 1;
+                    var percent = (newvalue / parseInt($(progressbar).attr('aria-valuemax')) * 100);
+
+                    $(progressbar).attr('aria-valuenow', newvalue);
+                    $(progressbar).attr('style', 'width: ' + percent + '%');
+
+                    /*$(target).removeClass('collapseall').addClass('expandall').html(M.util.get_string('expandall', 'moodle'));
+                    $('.sectiontoggle').each(function(index) {
+                        var section = '#collapse-' + (index + 1);
+                        $(section).collapse('hide');
+                        if (sectiontoggles.hasOwnProperty(index + 1)) {
+                            delete sectiontoggles[index + 1];
+                            M.util.set_user_preference('sections-toggle-' + $args.course, JSON.stringify(sectiontoggles));
+                        }
+                    });*/
+                });
             });
         }
     };

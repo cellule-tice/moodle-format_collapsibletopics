@@ -38,4 +38,8 @@ $string['privacy:request:preference:sectionstoggle'] = 'You kept sections {$a->v
 $string['sectionname'] = 'Topic';
 $string['section0name'] = 'General';
 $string['showfromothers'] = 'Show topic';
-
+$string['sectionprogress'] = 'Section progress bar';
+$string['sectionprogress_help'] = 'Display a progress bar right to section names if activity completion is activated.';
+$string['sectionprogresstext'] = 'Section progress';
+$string['sectionprogresshidden'] = 'Don\'t display a progress bar for each section';
+$string['sectionprogressshown'] = 'Display a progress bar for each section';
