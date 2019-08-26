@@ -292,6 +292,8 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
                     $section->section .
                     '">&nbsp;' . $sectionname .
                     '</a> ';
+            } else if ($section->section == 0 && !is_null($section->name)) {
+                $o .= $this->output->heading($sectionname, 3, 'sectionname' . $classes);
             }
             // End collapse toggle.
 
