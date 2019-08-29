@@ -112,16 +112,6 @@ define(['jquery', 'core/log'], function($, log) {
 
                     $(progressbar).attr('aria-valuenow', newvalue);
                     $(progressbar).attr('style', 'width: ' + percent + '%');
-
-                    /*$(target).removeClass('collapseall').addClass('expandall').html(M.util.get_string('expandall', 'moodle'));
-                    $('.sectiontoggle').each(function(index) {
-                        var section = '#collapse-' + (index + 1);
-                        $(section).collapse('hide');
-                        if (sectiontoggles.hasOwnProperty(index + 1)) {
-                            delete sectiontoggles[index + 1];
-                            M.util.set_user_preference('sections-toggle-' + $args.course, JSON.stringify(sectiontoggles));
-                        }
-                    });*/
                 });
             });
         }

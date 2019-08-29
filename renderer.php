@@ -399,18 +399,11 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
      * @return string
      */
     protected function section_summary($section, $course, $mods) {
-        $activities = $this->section_activity_summary($section, $course, null);
-
         $o = '';
         $o .= html_writer::start_tag('div', array('class' => 'summarytext'));
         $o .= $this->format_summary_text($section);
         $o .= html_writer::end_tag('div');
-        $o .= '<a class="sectiontoggle-bottom' .
-                    '" data-toggle="collapse" data-parent="accordion" href="#collapse-' .
-                    $section->section .
-                    '" aria-expanded="true" aria-controls="collapse-' .
-                    $section->section .
-                    '">' . $activities . '</a> ';
+        $o .= $this->section_activity_summary($section, $course, null);
 
         return $o;
     }

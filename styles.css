@@ -16,9 +16,6 @@
 
 .course-content ul.collapsibletopics li.section .sectionname {
     color: #1177d1;
-    /*font-weight: bold;
-    font-size: 1.5rem;
-    margin-top: .25rem;*/
 }
 
 .course-content ul.collapsibletopics li.section .right {
@@ -100,6 +97,15 @@ body.editing .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded=
     padding-left: 0;
 }
 
+body.dir-rtl .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded="false"] {
+    background-position: right 40%;
+}
+
+body.dir-rtl .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded="false"] {
+    background-image: url([[pix:moodle|t/collapsed_rtl]]);
+    background-position: right 40%;
+}
+
 .course-content ul.collapsibletopics a.sectiontoggle .sectionname:hover {
     text-decoration: underline;
 }
@@ -126,13 +132,11 @@ body.editing ul.collapsibletopics .content .summarytext {
     display: none;
 }
 
-.course-content ul.collapsibletopics .sectiontoggle ~ .section-summary-activities,
-.course-content ul.collapsibletopics .sectiontoggle-bottom .section-summary-activities {
+.course-content ul.collapsibletopics .sectiontoggle ~ .section-summary-activities {
     display: none;
 }
 
-.course-content ul.collapsibletopics .sectiontoggle-bottom.collapsed .section-summary-activities,
-.course-content ul.collapsibletopics .sectiontoggle.collapsed ~ .sectiontoggle-bottom .section-summary-activities {
+.course-content ul.collapsibletopics .sectiontoggle.collapsed ~ .section-summary-activities {
     display: block;
 }
 
@@ -157,36 +161,3 @@ body.editing .course-content ul.collapsibletopics li.section ul.section {
     height: 7px;
     border: 0;
 }
-
-/*.course-content ul.collapsibletopics li.section.main {
-    border-top: 7px solid #dcdcdc;
-    border-bottom: 3px solid #f3f3f3;
-    margin: 2rem 0;
-    background-color: #f8f8f8;
-}
-
-.course-content ul.collapsibletopics li#section-0 {
-    border-top: 0;
-    border-bottom: 0;
-    margin: 0;
-    background-color: initial;
-}*/
-
-/*body.editing .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded="false"] {
-    background-position: 50%;
-    padding-right: 2rem;
-    padding-left: 0;
-    border-radius: 5px;
-    background-color: #dcdcdc;
-}
-body.editing .course-content ul.collapsibletopics a.sectiontoggle[aria-expanded="true"] {
-    background-position: 50%;
-    padding-right: 2rem;
-    padding-left: 0;
-    border-radius: 5px;
-    background-color: #dcdcdc;
-}
-
-body.editing h3.sectionname {
-    margin-top: 1rem;
-}*/
