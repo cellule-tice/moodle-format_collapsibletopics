@@ -201,8 +201,6 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
             $complete = 0;
             $cancomplete = isloggedin() && !isguestuser();
             $modinfo = get_fast_modinfo($course);
-
-            $sectionmods = array();
             $completioninfo = new completion_info($course);
             if (!empty($modinfo->sections[$section->section])) {
                 foreach ($modinfo->sections[$section->section] as $cmid) {
@@ -215,13 +213,6 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
                     }
 
                     if ($thismod->uservisible) {
-                        if (isset($sectionmods[$thismod->modname])) {
-                            $sectionmods[$thismod->modname]['name'] = $thismod->modplural;
-                            $sectionmods[$thismod->modname]['count']++;
-                        } else {
-                            $sectionmods[$thismod->modname]['name'] = $thismod->modfullname;
-                            $sectionmods[$thismod->modname]['count'] = 1;
-                        }
                         if ($cancomplete && $completioninfo->is_enabled($thismod) != COMPLETION_TRACKING_NONE) {
                             $total++;
                             $completiondata = $completioninfo->get_data($thismod, true);
@@ -422,7 +413,7 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
             return '';
         }
 
-        // Generate array with count of activities in this section:
+        // Generate array with count of activities in this section.
         $sectionmods = array();
         $total = 0;
         $complete = 0;
@@ -451,17 +442,17 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
         }
 
         if (empty($sectionmods)) {
-            // No sections
+            // No sections.
             return '';
         }
 
-        // Output section activities summary:
+        // Output section activities summary.
         $o = '';
-        $o.= html_writer::start_tag('div', array('class' => 'section-summary-activities mdl-right'));
+        $o .= html_writer::start_tag('div', array('class' => 'section-summary-activities mdl-right'));
         foreach ($sectionmods as $mod) {
-            $o.= html_writer::start_tag('span', array('class' => 'activity-count'));
-            $o.= $mod['name'].': '.$mod['count'];
-            $o.= html_writer::end_tag('span');
+            $o .= html_writer::start_tag('span', array('class' => 'activity-count'));
+            $o .= $mod['name'].': '.$mod['count'];
+            $o .= html_writer::end_tag('span');
         }
         $o.= html_writer::end_tag('div');
 
