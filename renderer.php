@@ -569,9 +569,12 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
             $percent = (int)(($complete / $total) * 100);
         }
 
-        $o .= '<div class="progress">';
-        $o .= '<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="' . $current .'" ';
-        $o .= ' aria-valuemin="0" aria-valuemax="' . $total .'" style="width: ' . $percent . '%;" data-tooltip="tooltip" data-placement="bottom" title="' . get_string('progresstotal', 'completion', $completion) . '">';
+        $o .= '<div class="progress">' .
+            '<div class="progress-bar progress-bar-info" role="progressbar" ' .
+            'aria-valuenow="' . $current .'" aria-valuemin="0" aria-valuemax="' . $total .'" ' .
+            'style="width: ' . $percent . '%;" ' .
+            'data-tooltip="tooltip" data-placement="bottom" ' .
+            'title="' . get_string('progresstotal', 'completion', $completion) . '">';
         $o .= '<div class="progresstest">';
         $o .= '<span class="sr-only">' . $percenttext . '</span>';
         $o .= '</div>';
