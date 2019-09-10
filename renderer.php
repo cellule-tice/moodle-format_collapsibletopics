@@ -454,7 +454,7 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
             $o .= $mod['name'].': '.$mod['count'];
             $o .= html_writer::end_tag('span');
         }
-        $o.= html_writer::end_tag('div');
+        $o .= html_writer::end_tag('div');
 
         // Output section completion data.
         if (!$course->sectionprogress && $total > 0) {
