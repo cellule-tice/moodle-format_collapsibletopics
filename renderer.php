@@ -456,15 +456,15 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
         }
         $o.= html_writer::end_tag('div');
 
-        // Output section completion data
+        // Output section completion data.
         if (!$course->sectionprogress && $total > 0) {
             $a = new stdClass;
             $a->complete = $complete;
             $a->total = $total;
 
-            $o.= html_writer::start_tag('div', array('class' => 'section-summary-activities mdl-right'));
-            $o.= html_writer::tag('span', get_string('progresstotal', 'completion', $a), array('class' => 'activity-count'));
-            $o.= html_writer::end_tag('div');
+            $o .= html_writer::start_tag('div', array('class' => 'section-summary-activities mdl-right'));
+            $o .= html_writer::tag('span', get_string('progresstotal', 'completion', $a), array('class' => 'activity-count'));
+            $o .= html_writer::end_tag('div');
         }
 
         return $o;
