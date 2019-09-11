@@ -49,7 +49,13 @@ user_preference_allow_ajax_update('sections-toggle-' . $PAGE->course->id, PARAM_
 $sectionstogglestate = get_user_preferences('sections-toggle-' . $PAGE->course->id, '{}');
 
 $numsections = course_get_format($course)->get_last_section_number();
-$params = array('course' => $PAGE->course->id, 'sectionstoggle' => $sectionstogglestate, 'numsections' => $numsections);
+$params = [
+    'course' => $course->id,
+    'sectionstoggle' => $sectionstogglestate,
+    'numsections' => $numsections,
+    'keepstateoversession' => get_config('format_collapsibletopics', 'keepstateoversession')
+];
+
 // Include course format js module.
 $PAGE->requires->js('/course/format/collapsibletopics/format.js');
 $PAGE->requires->js_call_amd('format_collapsibletopics/collapsibletopics', 'init', array($params));
