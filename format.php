@@ -45,14 +45,8 @@ $renderer = $PAGE->get_renderer('format_collapsibletopics');
 
 $renderer->print_multiple_section_page($course, null, null, null, null);
 
-user_preference_allow_ajax_update('sections-toggle-' . $PAGE->course->id, PARAM_RAW);
-$sectionstogglestate = get_user_preferences('sections-toggle-' . $PAGE->course->id, '{}');
-
-$numsections = course_get_format($course)->get_last_section_number();
 $params = [
     'course' => $course->id,
-    'sectionstoggle' => $sectionstogglestate,
-    'numsections' => $numsections,
     'keepstateoversession' => get_config('format_collapsibletopics', 'keepstateoversession')
 ];
 
