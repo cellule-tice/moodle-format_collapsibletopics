@@ -29,7 +29,6 @@ define(['jquery', 'core/log'], function($, log) {
     /**
      * Update toggles state of current course in browser storage.
      */
-    //function setState(course, toggles, storage) {
     var setState = function(course, toggles, storage) {
         if (storage == 'local') {
             window.localStorage.setItem('sections-toggle-' + course, JSON.stringify(toggles));
@@ -142,7 +141,6 @@ define(['jquery', 'core/log'], function($, log) {
                     }
                 });
                 $('body').on('click', '.togglecompletion button', function(event) {
-                    //event.preventDefault();
                     var target = event.target;
                     var state  = $(target).parent().parent().children('input[name="completionstate"]').val();
                     var section = ($(target).closest('li.section'));
@@ -158,8 +156,4 @@ define(['jquery', 'core/log'], function($, log) {
             });
         }
     };
-
-
-
-
 });
