@@ -38,50 +38,15 @@ defined('MOODLE_INTERNAL') || die();
  */
 class provider implements
     // This plugin has data.
-    \core_privacy\local\metadata\provider,
-
-    // This plugin stores user data.
-    \core_privacy\local\request\user_preference_provider {
+    \core_privacy\local\metadata\null_provider {
 
     /**
-     * Returns meta data about this system.
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
      *
-     * @param collection $items The initialised item collection to add items to.
-     * @return collection A listing of user data stored through this system.
+     * @return  string
      */
-    public static function get_metadata(collection $items) : collection {
-        // There are several user preferences.
-        $items->add_user_preference('sections-toggle', 'privacy:metadata:preference:sectionstoggle');
-
-        return $items;
-    }
-
-    /**
-     * Store all user preferences for the plugin.
-     *
-     * @param int $userid The userid of the user whose data is to be exported.
-     */
-    public static function export_user_preferences(int $userid) {
-
-        $preferences = get_user_preferences(null, null, $userid);
-        foreach ($preferences as $prefname => $prefvalue) {
-            $courseid = null;
-            if (strpos($prefname, 'sections-toggle-') === 0) {
-                $courseid = substr($prefname, 16);
-                $decodedprefvalue = (array)json_decode($prefvalue);
-                $sectionsarray = array_keys($decodedprefvalue);
-                $sections = implode(', ', $sectionsarray);
-                writer::export_user_preference(
-                    'format_collapsibletopics',
-                    $prefname,
-                    $sections,
-                    get_string('privacy:request:preference:sectionstoggle', 'format_collapsibletopics', (object) [
-                        'name' => $courseid,
-                        'value' => $sections
-                    ])
-                );
-            }
-        }
-
+    public static function get_reason() : string {
+        return 'privacy:metadata';
     }
 }
