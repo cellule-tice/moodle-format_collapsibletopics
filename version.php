@@ -29,4 +29,4 @@ $plugin->version   = 2019100900;        // The current plugin version (Date: YYY
 $plugin->maturity = MATURITY_STABLE;
 $plugin->requires  = 2019052000;        // Requires this Moodle version.
 $plugin->component = 'format_collapsibletopics';    // Full name of the plugin (used for diagnostics).
-$plugin->release = '3.7.1'; // Align version number with most recent moodle compatible version.
+$plugin->release = '3.7.2'; // Align version number with most recent moodle compatible version.
