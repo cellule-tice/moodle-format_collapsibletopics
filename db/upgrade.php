@@ -39,7 +39,7 @@ function xmldb_format_collapsibletopics_upgrade($oldversion) {
         // Delete all records related to sections toggle state that is now handled by browser local/session storage.
         $where = 'name like :pattern';
         $DB->delete_records_select('user_preferences', $where, array('pattern' => 'sections-toggle%'));
-        upgrade_plugin_savepoint(true, 2019100700, 'format', 'collapsibletopics');
+        upgrade_plugin_savepoint(true, 2019100900, 'format', 'collapsibletopics');
     }
 
     return true;
