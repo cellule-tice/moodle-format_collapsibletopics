@@ -22,7 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery', 'core/log'], function($, log) {
+define(['jquery', 'core/log', 'core/str'], function($, log, str) {
 
     "use strict";
 
@@ -40,7 +40,6 @@ define(['jquery', 'core/log'], function($, log) {
     /**
      * Update toggles state of current course in browser storage.
      */
-    //function getState(course, storage) {
     var getState = function(course, storage) {
         var toggles;
         if (storage == 'local') {
@@ -147,11 +146,24 @@ define(['jquery', 'core/log'], function($, log) {
                     var progressbar = $(section).find('.progress-bar');
                     var oldvalue = parseInt($(progressbar).attr('aria-valuenow'));
                     var newvalue = state == 1 ? oldvalue + 1 : oldvalue - 1;
-                    var percent = Math.round((newvalue / parseInt($(progressbar).attr('aria-valuemax')) * 100));
-
+                    var total = parseInt($(progressbar).attr('aria-valuemax'));
+                    var percent = Math.round((newvalue / total * 100));
                     $(progressbar).attr('aria-valuenow', newvalue);
                     $(progressbar).attr('style', 'width: ' + percent + '%');
-                    $(progressbar).attr('data-original-title', '' + percent + '%');
+                    var strings = [
+                        {
+                            key: 'progresstotal',
+                            component: 'completion',
+                            param : {
+                                complete: newvalue,
+                                total: total
+                            }
+                        }
+                    ];
+                    str.get_strings(strings).then(function(progress) {
+                        $(progressbar).attr('data-original-title', progress);
+                    });
+
                 });
             });
         }
