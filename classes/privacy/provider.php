@@ -17,7 +17,7 @@
  * Privacy Subsystem implementation for format_collapsibletopics.
  *
  * @package    format_collapsibletopics
- * @copyright 2018 - Cellule TICE - Unversite de Namur
+ * @copyright  2018 - Cellule TICE - Unversite de Namur
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 namespace format_collapsibletopics\privacy;

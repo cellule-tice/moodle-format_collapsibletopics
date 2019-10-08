@@ -18,7 +18,8 @@
  * Strings for component 'format_collapsibletopics', language 'en'
  *
  * @package   format_collapsibletopics
- * @copyright 1999 onwards Martin Dougiamas  {@link http://moodle.com}
+ * @author     Jean-Roch Meurisse
+ * @copyright  2018 - Cellule TICE - Unversite de Namur
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

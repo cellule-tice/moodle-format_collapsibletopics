@@ -17,16 +17,16 @@
 /**
  * Plugin upgrade steps are defined here.
  *
- * @package     mod_cobra
+ * @package     format_collapsibletopics
  * @category    upgrade
- * @copyright   2016 onwards - Cellule TICE - University of Namur
+ * @copyright   2018 - Cellule TICE - University of Namur
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Execute mod_cobra upgrade from the given old version.
+ * Execute format_collapsibletopics upgrade from the given old version.
  *
  * @param int $oldversion
  * @return bool
@@ -35,7 +35,7 @@ function xmldb_format_collapsibletopics_upgrade($oldversion) {
 
     global $DB;
 
-    if ($oldversion < 2019100700) {
+    if ($oldversion < 2019100900) {
         // Delete all records related to sections toggle state that is now handled by browser local/session storage.
         $where = 'name like :pattern';
         $DB->delete_records_select('user_preferences', $where, array('pattern' => 'sections-toggle%'));
