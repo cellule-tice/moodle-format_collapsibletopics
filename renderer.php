@@ -21,7 +21,6 @@
  * @copyright 2018 - Cellule TICE - Unversite de Namur
  * @copyright 2012 Dan Poltawski
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @since Moodle 2.3
  */
 
 

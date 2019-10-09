@@ -18,7 +18,8 @@
  * Strings for component 'format_collapsibletopics', language 'en'
  *
  * @package   format_collapsibletopics
- * @copyright 1999 onwards Martin Dougiamas  {@link http://moodle.com}
+ * @author     Jean-Roch Meurisse
+ * @copyright  2018 - Cellule TICE - Unversite de Namur
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -33,8 +34,6 @@ $string['keepstateoversession_desc'] = 'If checked collapse state will be kept w
 $string['newsectionname'] = 'New name for topic {$a}';
 $string['pluginname'] = 'Collapsible Topics format';
 $string['privacy:metadata'] = 'The Collapsible topics format plugin does not store any personal data.';
-$string['privacy:metadata:preference:sectionstoggle'] = 'Toggle state for sections of a course.';
-$string['privacy:request:preference:sectionstoggle'] = 'You kept sections {$a->value}" opened in course {$a->name}';
 $string['sectionname'] = 'Topic';
 $string['section0name'] = 'General';
 $string['showfromothers'] = 'Show topic';

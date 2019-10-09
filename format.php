@@ -45,11 +45,11 @@ $renderer = $PAGE->get_renderer('format_collapsibletopics');
 
 $renderer->print_multiple_section_page($course, null, null, null, null);
 
-user_preference_allow_ajax_update('sections-toggle-' . $PAGE->course->id, PARAM_RAW);
-$sectionstogglestate = get_user_preferences('sections-toggle-' . $PAGE->course->id, '{}');
+$params = [
+    'course' => $course->id,
+    'keepstateoversession' => get_config('format_collapsibletopics', 'keepstateoversession')
+];
 
-$numsections = course_get_format($course)->get_last_section_number();
-$params = array('course' => $PAGE->course->id, 'sectionstoggle' => $sectionstogglestate, 'numsections' => $numsections);
 // Include course format js module.
 $PAGE->requires->js('/course/format/collapsibletopics/format.js');
 $PAGE->requires->js_call_amd('format_collapsibletopics/collapsibletopics', 'init', array($params));

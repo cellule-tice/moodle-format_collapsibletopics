@@ -22,15 +22,54 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery', 'core/log'], function($, log) {
+define(['jquery', 'core/log', 'core/str'], function($, log, str) {
 
     "use strict";
 
+    /**
+     * Update toggles state of current course in browser storage.
+     */
+    var setState = function(course, toggles, storage) {
+        if (storage == 'local') {
+            window.localStorage.setItem('sections-toggle-' + course, JSON.stringify(toggles));
+        } else if (storage == 'session') {
+            window.sessionStorage.setItem('sections-toggle-' + course, JSON.stringify(toggles));
+        }
+    };
+
+    /**
+     * Update toggles state of current course in browser storage.
+     */
+    var getState = function(course, storage) {
+        var toggles;
+        if (storage == 'local') {
+            toggles = window.localStorage.getItem('sections-toggle-' + course);
+        } else if (storage == 'session') {
+            toggles = window.sessionStorage.getItem('sections-toggle-' + course);
+        }
+        if (toggles === null) {
+            return {};
+        } else {
+            return JSON.parse(toggles);
+        }
+    };
+
     return {
-        init: function($args) {
+        init: function(args) {
             log.debug('Format collapsibletopics AMD module initialized');
             $(document).ready(function($) {
-                var sectiontoggles = JSON.parse($args.sectionstoggle);
+                var sectiontoggles;
+                var keepstateoversession = args.keepstateoversession;
+                var storage;
+                if (keepstateoversession == 1) {
+                    // Use browser local storage.
+                    storage = 'local';
+                } else {
+                    // Use browser session storage.
+                    storage = 'session';
+                }
+
+                sectiontoggles = getState(args.course, storage);
 
                 setTimeout(function() {
                     for (var section in sectiontoggles) {
@@ -52,7 +91,7 @@ define(['jquery', 'core/log'], function($, log) {
                         $(section).collapse('show');
                         if (!sectiontoggles.hasOwnProperty(index + 1)) {
                             sectiontoggles[index + 1] = "true";
-                            M.util.set_user_preference('sections-toggle-' + $args.course, JSON.stringify(sectiontoggles));
+                            setState(args.course, sectiontoggles, storage);
                         }
                     });
                 });
@@ -66,7 +105,7 @@ define(['jquery', 'core/log'], function($, log) {
                         $(section).collapse('hide');
                         if (sectiontoggles.hasOwnProperty(index + 1)) {
                             delete sectiontoggles[index + 1];
-                            M.util.set_user_preference('sections-toggle-' + $args.course, JSON.stringify(sectiontoggles));
+                            setState(args.course, sectiontoggles, storage);
                         }
                     });
                 });
@@ -87,7 +126,7 @@ define(['jquery', 'core/log'], function($, log) {
 
                     if (!sectiontoggles.hasOwnProperty(sectionid)) {
                         sectiontoggles[sectionid] = "true";
-                        M.util.set_user_preference('sections-toggle-' + $args.course, JSON.stringify(sectiontoggles));
+                        setState(args.course, sectiontoggles, storage);
                     }
                 });
 
@@ -97,21 +136,34 @@ define(['jquery', 'core/log'], function($, log) {
 
                     if (sectiontoggles.hasOwnProperty(sectionid)) {
                         delete sectiontoggles[sectionid];
-                        M.util.set_user_preference('sections-toggle-' + $args.course, JSON.stringify(sectiontoggles));
+                        setState(args.course, sectiontoggles, storage);
                     }
                 });
                 $('body').on('click', '.togglecompletion button', function(event) {
-                    //event.preventDefault();
                     var target = event.target;
                     var state  = $(target).parent().parent().children('input[name="completionstate"]').val();
                     var section = ($(target).closest('li.section'));
                     var progressbar = $(section).find('.progress-bar');
                     var oldvalue = parseInt($(progressbar).attr('aria-valuenow'));
                     var newvalue = state == 1 ? oldvalue + 1 : oldvalue - 1;
-                    var percent = (newvalue / parseInt($(progressbar).attr('aria-valuemax')) * 100);
-
+                    var total = parseInt($(progressbar).attr('aria-valuemax'));
+                    var percent = Math.round((newvalue / total * 100));
                     $(progressbar).attr('aria-valuenow', newvalue);
                     $(progressbar).attr('style', 'width: ' + percent + '%');
+                    var strings = [
+                        {
+                            key: 'progresstotal',
+                            component: 'completion',
+                            param : {
+                                complete: newvalue,
+                                total: total
+                            }
+                        }
+                    ];
+                    str.get_strings(strings).then(function(progress) {
+                        $(progressbar).attr('data-original-title', progress);
+                    });
+
                 });
             });
         }
