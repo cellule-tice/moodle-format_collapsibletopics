@@ -72,12 +72,14 @@ define(['jquery', 'core/log', 'core/str'], function($, log, str) {
                 sectiontoggles = getState(args.course, storage);
 
                 setTimeout(function() {
-                    for (var section in sectiontoggles) {
-                        section = '#collapse-' + parseInt(section);
-                        $(section).collapse('show');
-                    }
-                    var currentcontent = $('.section.current a.sectiontoggle').attr('href');
-                    $(currentcontent).collapse('show');
+                    $('.sectiontoggle').each(function (index) {
+                        var section = '#collapse-' + (index + 1);
+                        if ($(section).parent().parent().hasClass('current') || (index + 1) in sectiontoggles) {
+                            $(section).collapse('show');
+                        } else {
+                            $(section).collapse('hide');
+                        }
+                    });
                 }, 50);
 
                 // Handle toggle all sections.
