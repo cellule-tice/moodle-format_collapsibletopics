@@ -72,6 +72,7 @@ define(['jquery', 'core/log', 'core/str'], function($, log, str) {
                 sectiontoggles = getState(args.course, storage);
 
                 setTimeout(function() {
+
                     $('.sectiontoggle').each(function (index) {
                         var section = '#collapse-' + (index + 1);
                         if ($(section).parent().parent().hasClass('current') || (index + 1) in sectiontoggles) {
