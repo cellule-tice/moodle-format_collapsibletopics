@@ -266,7 +266,7 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
                     $o .= $this->section_progressbar($total, $complete);
                 }
                 $o .= '<a class="sectiontoggle' .
-                    '" data-toggle="collapse" data-parent="accordion" href="#collapse-' .
+                    '" data-toggle="collapse" data-parent=".accordion" href="#collapse-' .
                     $section->section .
                     '" aria-expanded="true" aria-controls="collapse-' .
                     $section->section .
@@ -276,7 +276,7 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
                     $o .= $this->section_progressbar($total, $complete);
                 }
                 $o .= '<a class="sectiontoggle collapsed' .
-                    '" data-toggle="collapse" data-parent="accordion" href="#collapse-' .
+                    '" data-toggle="collapse" data-parent=".accordion" href="#collapse-' .
                     $section->section .
                     '" aria-expanded="false" aria-controls="collapse-' .
                     $section->section .
@@ -302,14 +302,14 @@ class format_collapsibletopics_renderer extends format_section_renderer_base {
             // Add collapse toggle.
             if (course_get_format($course)->is_section_current($section)) {
                 $o .= '<a class="sectiontoggle' .
-                    '" data-toggle="collapse" data-parent="accordion" href="#collapse-' .
+                    '" data-toggle="collapse" data-parent=".accordion" href="#collapse-' .
                     $section->section .
                     '" aria-expanded="true" aria-controls="collapse-' .
                     $section->section .
                     '">&nbsp;</a> ';
             } else if ($section->section != 0) {
                 $o .= '<a class="sectiontoggle collapsed' .
-                    '" data-toggle="collapse" data-parent="accordion" href="#collapse-' .
+                    '" data-toggle="collapse" data-parent=".accordion" href="#collapse-' .
                     $section->section .
                     '" aria-expanded="false" aria-controls="collapse-' .
                     $section->section .
