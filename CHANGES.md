@@ -10,6 +10,10 @@ Changes
 * 2019-11-17 - Rebuild amd module with new transpiler
 * 2019-11-17 - Fix wrong behaviour of section collapsing with bootstrap in moodle 3.8.
 
+### v3.8
+* 2019-11-17 - Rebuild amd module with new transpiler
+* 2019-11-17 - Fix wrong behaviour of section collapsing with bootstrap in moodle 3.8.
+
 ### v3.7.2
 * 2019-10-09 - Transfer toggle state persistance from db to browser storage.
 
