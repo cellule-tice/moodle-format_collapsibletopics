@@ -1,27 +1,37 @@
 language: php
 
-sudo: true
-dist: trusty
+os:
+  - linux
+
+dist: bionic
+
+sudo: required
+
+services:
+  - mysql
 
 addons:
   firefox: "47.0.1"
-  postgresql: "9.4"
+  postgresql: "9.6"
   apt:
     packages:
       - openjdk-8-jre-headless
+      - chromium-chromedriver
 
 cache:
   directories:
     - $HOME/.composer/cache
     - $HOME/.npm
+    - $HOME/.nvm
 
 php:
- - 7.1
  - 7.2
+ - 7.3
 
 env:
  global:
   - MOODLE_BRANCH=MOODLE_38_STABLE
+  - MOODLE_BRANCH=MOODLE_39_STABLE
   
  matrix:
   - DB=pgsql
@@ -29,8 +39,8 @@ env:
 
 before_install:
   - phpenv config-rm xdebug.ini
-  - nvm install 8.9
-  - nvm use 8.9
+  - nvm install 14.2.0
+  - nvm use 14.2.0
   - cd ../..
   - composer create-project -n --no-dev --prefer-dist blackboard-open-source/moodle-plugin-ci ci ^2
   - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"

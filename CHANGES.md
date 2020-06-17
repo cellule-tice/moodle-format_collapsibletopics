@@ -3,6 +3,12 @@ moodle-format_collapsibletopics
 
 Changes
 -------
+### v3.9
+* 2020-06-16 - Fix issue #19 - collapse problem with hidden sections.
+
+### v3.8
+* 2019-11-17 - Rebuild amd module with new transpiler
+* 2019-11-17 - Fix wrong behaviour of section collapsing with bootstrap in moodle 3.8.
 
 ### v3.8
 * 2019-11-17 - Rebuild amd module with new transpiler
