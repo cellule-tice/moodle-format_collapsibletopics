@@ -1,14 +1,17 @@
 language: php
 
-sudo: true
-dist: trusty
+sudo: required
+
+services:
+  - mysql
 
 addons:
   firefox: "47.0.1"
-  postgresql: "9.4"
+  postgresql: "9.6"
   apt:
     packages:
       - openjdk-8-jre-headless
+      - chromium-chromedriver
 
 cache:
   directories:
@@ -19,6 +22,7 @@ php:
  - 7.1
  - 7.2
  - 7.3
+ - 7.4
 
 env:
  global:
@@ -30,9 +34,13 @@ env:
   - DB=mysqli
 
 before_install:
+  # php settings
+  - echo "upload_max_filesize=20M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo "post_max_size=20M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  # moodle-plugin-ci installation (https://github.com/blackboard-open-source/moodle-plugin-ci/blob/master/.travis.dist.yml)
   - phpenv config-rm xdebug.ini
-  - nvm install 8.9
-  - nvm use 8.9
+  - nvm install 14.2.0
+  - nvm use 14.2.0
   - cd ../..
   - composer create-project -n --no-dev --prefer-dist blackboard-open-source/moodle-plugin-ci ci ^2
   - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
