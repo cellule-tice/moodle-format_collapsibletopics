@@ -66,3 +66,4 @@ Feature: Sections can be expanded in collapsibletopics format
     And I should see "Chat: 1" in the "li#section-4 .content" "css_element"
     And I should not see "Test choice name" in the "li#section-5" "css_element"
     And I should see "Choice: 1" in the "li#section-5 .content" "css_element"
+    
