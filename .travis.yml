@@ -1,5 +1,9 @@
 language: php
-dist: trusty
+
+os:
+  - linux
+
+dist: bionic
 
 sudo: required
 
@@ -18,11 +22,11 @@ cache:
   directories:
     - $HOME/.composer/cache
     - $HOME/.npm
+    - $HOME/.nvm
 
 php:
  - 7.2
  - 7.3
- - 7.4
 
 env:
  global:
@@ -34,10 +38,6 @@ env:
   - DB=mysqli
 
 before_install:
-  # php settings
-  - echo "upload_max_filesize=20M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-  - echo "post_max_size=20M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-  # moodle-plugin-ci installation (https://github.com/blackboard-open-source/moodle-plugin-ci/blob/master/.travis.dist.yml)
   - phpenv config-rm xdebug.ini
   - nvm install 14.2.0
   - nvm use 14.2.0
