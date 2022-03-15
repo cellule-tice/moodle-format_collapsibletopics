@@ -168,6 +168,7 @@ define(['jquery', 'core/log', 'core/str'], function($, log, str) {
                     ];
                     str.get_strings(strings).then(function(progress) {
                         $(progressbar).attr('data-original-title', progress);
+                        return true;
                     });
 
                 });
