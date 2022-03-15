@@ -36,7 +36,7 @@ require_once($CFG->dirroot . '/course/lib.php');
  * @copyright  2015 Marina Glancy
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class format_collapsibletopics_testcase extends advanced_testcase {
+class format_collapsibletopics_test extends advanced_testcase {
 
     /**
      * Tests for format_collapsibletopics::get_section_name method with default section names.

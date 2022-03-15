@@ -16,7 +16,7 @@
 /**
  * Javascript controller for the "Actions" panel at the bottom of the page.
  *
- * @package    format_collapsibletopics
+ * @module    format_collapsibletopics
  * @author     Jean-Roch Meurisse
  * @copyright  2018 University of Namur - Cellule TICE
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -28,6 +28,9 @@ define(['jquery', 'core/log', 'core/str'], function($, log, str) {
 
     /**
      * Update toggles state of current course in browser storage.
+     * @param {number} course The current course
+     * @param {array} toggles The list of open sections
+     * @param {String} storage The configured storage type (local/session)
      */
     var setState = function(course, toggles, storage) {
         if (storage == 'local') {
@@ -39,6 +42,9 @@ define(['jquery', 'core/log', 'core/str'], function($, log, str) {
 
     /**
      * Update toggles state of current course in browser storage.
+     * @param {number} course The current course
+     * @param {String} storage The configured storage type (local/session)
+     * @returns the list of open sections for the current course
      */
     var getState = function(course, storage) {
         var toggles;
@@ -141,7 +147,7 @@ define(['jquery', 'core/log', 'core/str'], function($, log, str) {
                 });
                 $('body').on('click', '.togglecompletion button', function(event) {
                     var target = event.target;
-                    var state  = $(target).parent().parent().children('input[name="completionstate"]').val();
+                    var state = $(target).parent().parent().children('input[name="completionstate"]').val();
                     var section = ($(target).closest('li.section'));
                     var progressbar = $(section).find('.progress-bar');
                     var oldvalue = parseInt($(progressbar).attr('aria-valuenow'));
@@ -154,7 +160,7 @@ define(['jquery', 'core/log', 'core/str'], function($, log, str) {
                         {
                             key: 'progresstotal',
                             component: 'completion',
-                            param : {
+                            param: {
                                 complete: newvalue,
                                 total: total
                             }

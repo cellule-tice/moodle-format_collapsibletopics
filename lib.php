@@ -261,7 +261,7 @@ class format_collapsibletopics extends format_base {
     /**
      * Adds format options elements to the course/section edit form.
      *
-     * This function is called from {@link course_edit_form::definition_after_data()}.
+     * This function is called from course_edit_form::definition_after_data().
      *
      * @param MoodleQuickForm $mform form the elements are added to.
      * @param bool $forsection 'true' if this is a section edit form, 'false' if this is course edit form.
@@ -295,8 +295,8 @@ class format_collapsibletopics extends format_base {
      * In case if course format was changed to 'topics', we try to copy options
      * 'coursedisplay' and 'hiddensections' from the previous format.
      *
-     * @param stdClass|array $data return value from {@link moodleform::get_data()} or array with data
-     * @param stdClass $oldcourse if this function is called from {@link update_course()}
+     * @param stdClass|array $data return value from moodleform::get_data() or array with data
+     * @param stdClass $oldcourse if this function is called from update_course()
      *     this object contains information about the course before update
      * @return bool whether there were any changes to the options values
      */
@@ -319,7 +319,7 @@ class format_collapsibletopics extends format_base {
     /**
      * Whether this format allows to delete sections
      *
-     * Do not call this function directly, instead use {@link course_can_delete_section()}
+     * Do not call this function directly, instead use course_can_delete_section()
      *
      * @param int|stdClass|section_info $section
      * @return bool
