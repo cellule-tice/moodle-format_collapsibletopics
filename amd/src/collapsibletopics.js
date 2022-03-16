@@ -14,7 +14,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Javascript controller for the "Actions" panel at the bottom of the page.
+ * AMD module for the collapsible sections feature.
  *
  * @module    format_collapsibletopics
  * @author     Jean-Roch Meurisse
