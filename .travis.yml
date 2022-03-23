@@ -25,7 +25,6 @@ cache:
     - $HOME/.nvm
 
 php:
- - 7.2
  - 7.3
  - 7.4
  - 8.0
@@ -39,9 +38,10 @@ env:
   - DB=mysqli
 
 before_install:
+  - echo 'max_input_vars=5000'
   - phpenv config-rm xdebug.ini
-  - nvm install 14.2.0
-  - nvm use 14.2.0
+  - nvm install 16.14.1
+  - nvm use 16.14.1
   - cd ../..
   - composer create-project -n --no-dev --prefer-dist moodlehq/moodle-plugin-ci ci ^3
   - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
