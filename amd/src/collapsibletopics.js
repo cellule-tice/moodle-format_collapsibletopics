@@ -145,7 +145,36 @@ define(['jquery', 'core/log', 'core/str'], function($, log, str) {
                         setState(args.course, sectiontoggles, storage);
                     }
                 });
+                $('body').on('click', '[data-action="toggle-manual-completion"]', function(event) {
+
+                    var target = event.target;
+                    var state = $(target).attr('data-toggletype');
+                    var section = ($(target).closest('li.section'));
+                    var progressbar = $(section).find('.progress-bar');
+                    var oldvalue = parseInt($(progressbar).attr('aria-valuenow'));
+                    var newvalue = state == 'manual:mark-done' ? oldvalue + 1 : oldvalue - 1;
+                    var total = parseInt($(progressbar).attr('aria-valuemax'));
+                    var percent = Math.round((newvalue / total * 100));
+                    $(progressbar).attr('aria-valuenow', newvalue);
+                    $(progressbar).attr('style', 'width: ' + percent + '%');
+                    var strings = [
+                        {
+                            key: 'progresstotal',
+                            component: 'completion',
+                            param: {
+                                complete: newvalue,
+                                total: total
+                            }
+                        }
+                    ];
+                    str.get_strings(strings).then(function(progress) {
+                        $(progressbar).attr('data-original-title', progress);
+                        return true;
+                    });
+
+                });
                 $('body').on('click', '.togglecompletion button', function(event) {
+
                     var target = event.target;
                     var state = $(target).parent().parent().children('input[name="completionstate"]').val();
                     var section = ($(target).closest('li.section'));
