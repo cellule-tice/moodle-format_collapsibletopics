@@ -4,7 +4,6 @@ moodle-format_collapsibletopics
 Changes
 -------
 ### v3.11
-
 * 2022-06-29 - Fix section progress update on toggle manual completion
 * 2022-06-10 - Prepare release 3.11 (codechecker and so on)
 * 2022-03-23 - Add github actions
